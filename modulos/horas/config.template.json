@@ -1,0 +1,9 @@
+{
+  "_instrucciones": "Copiar como horas/config.json en el proyecto y borrar esta clave. ramas = las ramas reales del repo a contar. desde = fecha desde la que se cuentan commits. umbralMin = hueco máximo entre commits para considerarlos la misma sesión. rampUpMin = minutos de arranque que se asignan al primer commit de cada sesión.",
+  "tarifaUsd": 20,
+  "ramas": ["main"],
+  "desde": "AAAA-MM-DD 00:00",
+  "umbralMin": 90,
+  "rampUpMin": 30,
+  "puerto": 8765
+}

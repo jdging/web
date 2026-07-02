@@ -1,0 +1,20 @@
+#!/bin/sh
+# Hook post-commit: regenera horas/data.js tras cada commit en una rama contada
+# (main o v2, segun horas/config.json). data.js esta gitignoreado (artefacto generado),
+# asi que NO se stagea: solo se refresca el archivo local. Ver horas/README.md.
+# Nunca falla el commit (el commit ya ocurrio).
+
+RAMA_ACTUAL="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "[horas] node no encontrado, se omite el recalculo." >&2
+  exit 0
+fi
+
+# ¿la rama actual esta en config.ramas?
+CONTAR="$(node -e "try{const c=require('./horas/config.json');const r=c.ramas||[c.rama];process.stdout.write(r.includes(process.argv[1])?'1':'0')}catch(e){process.stdout.write('0')}" "$RAMA_ACTUAL" 2>/dev/null)"
+
+[ "$CONTAR" != "1" ] && exit 0
+
+node horas/generar.mjs || exit 0
+exit 0
