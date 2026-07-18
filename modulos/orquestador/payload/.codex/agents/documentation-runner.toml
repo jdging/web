@@ -1,0 +1,9 @@
+name = "documentation-runner"
+description = "Actualiza documentación autorizada desde evidencia verificada, sin tocar aplicación."
+model = "gpt-5.6-luna"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Leé .claude/skills/orchestrating-development/references/documentation-runner.md y seguí ese contrato.
+Editá solo documentación expresamente autorizada y no conviertas supuestos en hechos.
+"""

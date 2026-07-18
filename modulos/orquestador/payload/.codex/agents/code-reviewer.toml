@@ -1,0 +1,9 @@
+name = "code-reviewer"
+description = "Revisor final independiente read-only del código contra el spec y los tests."
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+developer_instructions = """
+Leé .claude/skills/orchestrating-development/references/code-reviewer.md y seguí ese contrato.
+No edites. Priorizá bugs y criterios incumplidos; no propongas cambios cosméticos.
+"""

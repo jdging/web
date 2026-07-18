@@ -56,6 +56,7 @@ Adaptala al contexto de este proyecto antes de aplicar nada.
 | `CAPTURAR.md` | Instrucciones para la IA: cómo capturar una idea nueva en `/x`. |
 | `ideas/` | Ideas reutilizables capturadas de proyectos (una por `.md`, indexadas en su README). |
 | `base/` | Templates que se copian y adaptan a cada proyecto: `AGENTS.md`, `CLAUDE.md`, `.gitignore`, `docs/`, `tutoriales/` (orquestador + auditoría). |
+| `modulos/orquestador/` | Orquestador v2 portable: skill/agentes de Claude, roles de Codex, contratos, instalador seguro y actualización por versión. |
 | `modulos/horas/` | Contador de horas por git log (de AREA VIVA). Opcional, requiere git. |
 | `modulos/marca/` | Marca JDG: dos modos oficiales (documento claro / herramienta oscura) + datos de contacto. |
 | `modulos/firebase/` | Patrón Firebase: dos proyectos prod/dev, rules por roles, red de costos pre-Blaze. |
@@ -65,15 +66,15 @@ Adaptala al contexto de este proyecto antes de aplicar nada.
 
 ## Principios del flujo (el resumen de una pantalla)
 
-1. **Claude diseña y audita, Codex implementa.** Claude no escribe código de la app sin OK
-   explícito; produce specs, orquesta y hace QA.
-2. **Divide y vencerás con red de seguridad:** trabajo grande → orquestador en la raíz,
-   partido en etapas QAeables, un chat nuevo por etapa y otro para auditar (ojo fresco).
+1. **Claude conduce; Codex revisa e implementa por rol.** Claude conserva producto y transiciones;
+   Codex recibe contratos estructurados con modelo, esfuerzo y permisos fijados por riesgo.
+2. **Divide y vencerás con gates:** trabajo grande → orquestador en la raíz, etapas QAeables,
+   revisión adversarial del spec, implementación, revisión independiente, QA automático y QA humano.
 3. **Convención de carpetas:** raíz = orquestadores ACTIVOS · `tasks/` = trabajo abierto/futuro ·
    `archivo/` = material cerrado (no se lee salvo pedido explícito; al cerrar algo, migra ahí
    con `git mv`).
-4. **Doc viva pero acotada:** la doc típica (`docs/`) se actualiza en los cierres, no por etapa.
-   La cantidad de doc escala con el proyecto — no todo proyecto necesita el set completo.
+4. **Doc viva pero acotada:** la política documental se declara una vez en `AGENTS.md`; por defecto
+   se actualiza en cierres autorizados. No debe contradecir el orquestador.
 5. **Token-economy siempre:** lectura acotada a los archivos en alcance, índices antes que
    re-escaneos, DOM antes que screenshot.
 6. **Reglas default de sesión:** no levantar servidor local ni tocar doc típica salvo permiso
@@ -81,5 +82,4 @@ Adaptala al contexto de este proyecto antes de aplicar nada.
 
 ---
 
-*Creado 2026-07-01 a partir de AREA VIVA (`tutoriales/orquestador.md`, `archivo/Auditacion.md`,
-`AGENTS.md`, `CLAUDE.md`, `horas/`, `marca/`) y `planillas-de-calculo/design/`.*
+*Creado 2026-07-01 y actualizado al orquestador v2 el 2026-07-18 a partir de AREA VIVA.*

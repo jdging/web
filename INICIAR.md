@@ -39,6 +39,7 @@ La doc escala con el proyecto. No instales el set completo por defecto.
 | Carpeta `archivo/` (vacía, con README de 2 líneas) | — | ✅ | ✅ | convención |
 | `tutoriales/prompts.md` (ciclo Claude↔Codex de bolsillo) | ✅ | ✅ | ✅ | `base/tutoriales/` |
 | `tutoriales/orquestador.md` | — | ✅ | ✅ | `base/tutoriales/` |
+| Orquestador v2 ejecutable (Claude + Codex) | opcional | ✅ | ✅ | `modulos/orquestador/` |
 | `tutoriales/auditoria.md` (adaptar fases al stack) | — | opcional | ✅ | `base/tutoriales/` |
 | Módulo `horas/` (si se cobran horas y hay git) | opcional | opcional | opcional | `modulos/horas/` |
 | `marca/jdg/` (si genera documentos) | opcional | opcional | opcional | `modulos/marca/` |
@@ -55,8 +56,8 @@ Estas vienen de serie (ya están en el template; no las quites):
 2. **No levantar servidor local** salvo permiso explícito o paso de QA de un orquestador.
 3. **No tocar la doc típica** (BITACORA, CONTEXTO, DECISIONES, lessons) durante el trabajo;
    se actualiza en los cierres, con OK de JD.
-4. QA automático de Claude **permitido** cuando lo dirige un orquestador (con token-economy:
-   DOM/eval antes que screenshot).
+4. QA automático **permitido** cuando lo dirige un orquestador (con token-economy: DOM/eval antes
+   que screenshot) y sin editar archivos.
 5. Convención raíz = orquestadores activos · `tasks/` = abierto · `archivo/` = cerrado (no leer
    salvo pedido).
 6. Herramientas gratuitas primero; ecosistema Google preferido.
@@ -69,6 +70,8 @@ Estas vienen de serie (ya están en el template; no las quites):
   hagas de una.
 - Si ya hay `.gitignore`, proponé un diff aditivo (qué líneas de `gitignore.base` faltan),
   no lo pises.
+- Si ya existen `.claude/` o `.codex/`, ejecutá el instalador del orquestador primero sin `-Apply`.
+  Todo `CONFLICT` se integra manualmente mediante un diff aprobado; nunca se fuerza.
 - Si ya hay git con historia, el módulo `horas` puede reconstruir horas pasadas: configurá
   `desde` con la fecha que JD te diga.
 - El `CONTEXTO.md` inicial se escribe con lo que JD contó + lo que se ve de la estructura.
@@ -85,7 +88,18 @@ Estas vienen de serie (ya están en el template; no las quites):
    .git/hooks/post-commit`) y generar la primera corrida (`node horas/generar.mjs`).
    **No los corras vos sin OK** (tocan `.git/`).
 
-## 5. Retroalimentación del contexto (después de instalar)
+## 5. Instalación del orquestador v2 (si entra)
+
+1. Ejecutá la simulación:
+   `C:\Proyectos\x\modulos\orquestador\instalar.ps1 -ProjectRoot <raíz>`.
+2. Mostrá `CREATE`, `UPDATE`, `UNCHANGED`, `CONFLICT` y los preflight. Esperá el OK.
+3. Aplicá con `-Apply`. El script instala el payload y `.orchestrator-install.json`; no toca código.
+4. Adaptá `AGENTS.md` y `CLAUDE.md` desde los templates de `/x`. Debe existir una sola política de
+   documentación, sin contradicciones entre reglas y orquestador.
+5. No corras un rol de escritura como piloto. Validá primero con un gate retrospectivo read-only.
+6. Si el proyecto no usa Git todavía, dejá la inicialización como paso manual pendiente.
+
+## 6. Retroalimentación del contexto (después de instalar)
 
 El entorno crece **ordenado y cauteloso**, no de una:
 
@@ -99,9 +113,9 @@ El entorno crece **ordenado y cauteloso**, no de una:
 - Si en el proyecto aparece una práctica nueva que serviría en otros, sugerile a JD
   capturarla con el flujo de `CAPTURAR.md`.
 
-## 6. Cierre de la instalación
+## 7. Cierre de la instalación
 
 Terminá reportando: qué se creó (lista de archivos), qué módulos quedaron afuera y por qué,
 los placeholders pendientes, y los pasos manuales de JD (hook de horas, git init si falta,
-decisiones de marca). Registrá la instalación como primera entrada de la BITACORA (si se
+primer piloto read-only, decisiones de marca). Registrá la instalación como primera entrada de la BITACORA (si se
 instaló) o al pie del CONTEXTO.

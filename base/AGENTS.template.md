@@ -23,11 +23,16 @@
 6. Nunca usar "vale la pena" ni "no vale la pena".
 
 ## Flujo de trabajo (Claude ↔ Codex)
-- **Claude** diseña, produce specs, orquesta y audita. **Codex** implementa specs.
-- Trabajo grande → **orquestador** en la raíz partido en etapas (ver
-  `tutoriales/orquestador.md`). Un chat nuevo por etapa; auditoría en otro chat (ojo fresco).
-- **QA automático de Claude permitido** cuando lo dirige un orquestador, con token-economy
+- **Claude Code es el conductor único:** conserva producto, redacta specs y decide transiciones.
+  **Codex CLI** revisa planes, implementa y audita mediante roles fijados por riesgo.
+- Trabajo grande → **orquestador v2** en la raíz, partido en etapas (ver
+  `tutoriales/orquestador.md` y el skill `orchestrating-development`).
+- Gates mínimos: diseño humano → `plan-reviewer APPROVED` → permiso de escritura → implementación
+  → revisión arquitectónica → QA automático → `code-reviewer APPROVED` → QA manual.
+- Seguridad, migraciones, CI, datos reales o release agregan `release-reviewer`.
+- **QA automático permitido** cuando lo dirige el orquestador, sin edición y con token-economy
   (leer DOM/eval antes que screenshot).
+- Producción, datos reales, merge, tag y deploy requieren confirmación puntual y separada.
 - Convención de carpetas: **raíz = orquestadores ACTIVOS** · **`tasks/` = trabajo
   abierto/futuro** · **`archivo/` = material cerrado** (no leer salvo pedido explícito;
   al cerrar un trabajo, su doc migra ahí con `git mv`).
@@ -45,6 +50,10 @@
 [NOMBRE]/
 ├── AGENTS.md              ← este archivo (instrucciones para Codex/agentes)
 ├── CLAUDE.md              ← preferencias y alertas para Claude
+├── .claude/               ← skill y agentes compartidos; resto de configuración local
+├── .codex/                ← roles de Codex compartidos
+├── .orchestration/        ← evidencia local de corridas (gitignored)
+├── .orchestrator-install.json ← versión y hashes del módulo instalado
 ├── docs/                  ← doc viva (CONTEXTO, BITACORA, DECISIONES, lessons — según escala)
 ├── tasks/                 ← trabajo abierto/futuro (todo.md, specs sueltas)
 ├── archivo/               ← material cerrado (no vigente; no leer salvo pedido)

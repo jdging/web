@@ -5,9 +5,22 @@
 # Si el proyecto YA tiene .gitignore: proponer diff aditivo, no pisar.
 # ============================================================
 
-# --- Entornos y agentes locales (config de IA que no debe viajar) ---
-.claude/
+# --- Entornos y agentes ---
+# El orquestador v2 versiona solo su skill/agentes; el resto sigue local.
+!.claude/
+.claude/*
+!.claude/agents/
+!.claude/agents/*.md
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/orchestrating-development/
+!.claude/skills/orchestrating-development/**
+!.codex/
+.codex/*
+!.codex/agents/
+!.codex/agents/*.toml
 .agents/
+.orchestration/
 CLAUDE.local.md
 CLAUDE.backup.md
 

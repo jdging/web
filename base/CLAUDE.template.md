@@ -20,10 +20,14 @@
 ## Flujo de trabajo
 - **REGLA CERO de toda sesión (si hay ramas):** correr `git branch --show-current` antes de
   trabajar. Rama de trabajo: `[RAMA]`. [Si el proyecto no usa ramas paralelas, borrar.]
+- **Orquestación v2:** usar el skill `orchestrating-development` en modo `guided`. Claude es el
+  conductor único; Codex revisa/implementa con roles fijados por riesgo y respuestas estructuradas.
 - Trabajo grande → armar orquestador con `tutoriales/orquestador.md`. Trabajo chico
   (1-2 archivos, QAeable de una) → directo o como task en `tasks/`.
-- Vos producís specs y auditás; el código lo implementa Codex. Excepción: etapas de pura
-  documentación las escribís vos.
+- Antes de implementar: diseño aprobado, spec contrastado con código real, `plan-reviewer APPROVED`
+  y permiso explícito. Después: revisión arquitectónica, QA automático, revisor final y QA manual.
+- Los roles de escritura no corren en paralelo sobre el mismo working tree. Producción, datos reales,
+  merge, tag y deploy requieren confirmación separada.
 
 ## Contexto mínimo
 - [Qué es el proyecto en 1-2 líneas + dónde está el detalle: docs/CONTEXTO.md]

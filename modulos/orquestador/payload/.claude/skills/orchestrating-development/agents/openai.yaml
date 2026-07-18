@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orquestar desarrollo"
+  short_description: "Planifica, implementa y audita por etapas"
+  default_prompt: "Usá $orchestrating-development para guiar esta feature desde el descubrimiento hasta el QA."
