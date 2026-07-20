@@ -3,6 +3,24 @@
 > Registro de cambios del template maestro. Entradas nuevas ARRIBA. Se actualiza cada vez que
 > cambia `base/`, `modulos/` o los documentos cerebro (LEEME/INICIAR/CAPTURAR).
 
+## 2026-07-20 — Orquestador v2.0.2: selección de paquete Windows completo
+- El wrapper evalúa todos los binarios de Codex disponibles y prioriza la versión más reciente que
+  incluya los helpers del sandbox nativo, evitando instalaciones antiguas heredadas por `PATH`.
+- Una CLI incompleta falla antes de iniciar el rol con un diagnóstico explícito; `invocation.json`
+  registra si los helpers requeridos están presentes.
+- El preflight del instalador informa la versión ejecutable más reciente en vez de la primera que
+  resuelva el shell.
+- El instalador deja de reescribir `.gitignore` cuando el bloque administrado no cambió.
+
+## 2026-07-20 — Orquestador v2.0.1: sandbox nativo de Windows
+- El wrapper y el preflight del instalador resuelven y validan un binario real de Codex antes de
+  invocarlo, incluso cuando el alias empaquetado de `WindowsApps` no es ejecutable desde el runner.
+- Las corridas fijan explícitamente sandbox, aprobación y `windows.sandbox = "elevated"`, también al
+  reanudar un thread, sin depender de la configuración global ignorada por el orquestador.
+- El `PATH` del proceso hijo excluye PowerShell instalado desde Microsoft Store y cae en un shell
+  accesible para el usuario aislado; cada corrida registra sus permisos efectivos en
+  `invocation.json`.
+
 ## 2026-07-18 — Orquestador Claude Code ↔ Codex CLI v2
 - Nuevo `modulos/orquestador/`: payload portable con skill y agentes de Claude, siete roles de
   Codex, contratos JSON, wrapper PowerShell y guía humana.

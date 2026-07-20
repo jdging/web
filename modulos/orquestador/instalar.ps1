@@ -31,10 +31,48 @@ function Get-PreviousHash($Manifest, [string]$RelativePath) {
 }
 
 function Get-VersionOrNull([string]$CommandName) {
-    $command = Get-Command $CommandName -ErrorAction SilentlyContinue
-    if (-not $command) { return $null }
-    $text = (& $command.Source --version 2>$null | Out-String).Trim()
-    if ($text -match '(\d+\.\d+\.\d+)') { return [version]$Matches[1] }
+    $candidates = @()
+    $versions = @()
+
+    if ($CommandName -eq 'codex' -and $env:CODEX_CLI_PATH) {
+        $candidates += $env:CODEX_CLI_PATH
+    }
+
+    foreach ($command in @(Get-Command $CommandName -All -ErrorAction SilentlyContinue)) {
+        if ($command.Source) {
+            $candidates += $command.Source
+        }
+    }
+
+    if ($CommandName -eq 'codex' -and $env:LOCALAPPDATA) {
+        $appBinRoot = Join-Path $env:LOCALAPPDATA 'OpenAI\Codex\bin'
+        if (Test-Path -LiteralPath $appBinRoot -PathType Container) {
+            $candidates += @(
+                Get-ChildItem -LiteralPath $appBinRoot -Directory -ErrorAction SilentlyContinue |
+                    ForEach-Object { Join-Path $_.FullName 'codex.exe' } |
+                    Where-Object { Test-Path -LiteralPath $_ -PathType Leaf } |
+                    Sort-Object { (Get-Item -LiteralPath $_).LastWriteTimeUtc } -Descending
+            )
+        }
+    }
+
+    foreach ($candidate in @($candidates | Where-Object { $_ } | Select-Object -Unique)) {
+        if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { continue }
+        try {
+            $text = (& $candidate --version 2>$null | Out-String).Trim()
+            $exitCode = $LASTEXITCODE
+        } catch {
+            continue
+        }
+        if ($exitCode -eq 0 -and $text -match '(\d+\.\d+\.\d+)') {
+            $versions += [version]$Matches[1]
+        }
+    }
+
+    if ($versions.Count -gt 0) {
+        return $versions | Sort-Object -Descending | Select-Object -First 1
+    }
+
     return $null
 }
 
@@ -185,9 +223,11 @@ foreach ($action in $actions | Where-Object { $_.Relative -ne '.gitignore' -and 
     Copy-Item -LiteralPath $action.Source -Destination $action.Destination -Force
 }
 
-$gitignoreParent = Split-Path -Parent $gitignorePath
-New-Item -ItemType Directory -Path $gitignoreParent -Force | Out-Null
-Set-Content -LiteralPath $gitignorePath -Value $gitignoreContent -Encoding UTF8 -NoNewline
+if ($gitignoreKind -ne 'UNCHANGED') {
+    $gitignoreParent = Split-Path -Parent $gitignorePath
+    New-Item -ItemType Directory -Path $gitignoreParent -Force | Out-Null
+    Set-Content -LiteralPath $gitignorePath -Value $gitignoreContent -Encoding UTF8 -NoNewline
+}
 
 $installedManifest = [ordered]@{
     module = [string]$module.name

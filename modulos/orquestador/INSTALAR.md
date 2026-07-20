@@ -48,3 +48,24 @@ git status --short
 
 Luego usar un gate retrospectivo read-only antes de habilitar una implementación. La corrida local
 debe quedar bajo `.orchestration/` y no aparecer en Git.
+
+## Sandbox nativo en Windows
+
+El wrapper conserva `--ignore-user-config` para que cada rol sea reproducible, pero fija de manera
+explícita `approval_policy = "never"`, el sandbox del rol y `windows.sandbox = "elevated"`. Los roles
+de implementación y documentación usan `workspace-write`; los revisores continúan en `read-only`.
+
+PowerShell 7 instalado desde Microsoft Store vive bajo `WindowsApps` y puede no ser ejecutable por
+el usuario aislado del sandbox. El wrapper excluye esas rutas únicamente del `PATH` del proceso hijo
+y permite que Codex use Windows PowerShell 5.1 o una instalación de PowerShell 7 accesible para todo
+el equipo. No modifica el `PATH` permanente del usuario.
+
+Cada corrida guarda `.orchestration/runs/<RunKey>/<Role>/invocation.json` con el ejecutable, versión,
+workspace y permisos efectivos. Si una ejecución falla antes de iniciar, revisar primero ese archivo
+y `stderr.log`; no habilitar `--dangerously-bypass-approvals-and-sandbox` como workaround.
+
+En Windows puede coexistir una instalación antigua en `%LOCALAPPDATA%\Programs\OpenAI\Codex\bin`
+con el paquete actual de la app. El wrapper prueba todos los candidatos, prefiere la versión más
+reciente que incluya `codex-windows-sandbox-setup.exe` y `codex-command-runner.exe`, y rechaza antes
+de iniciar una CLI incompleta. `invocation.json` registra también
+`windows_sandbox_helpers_present` para auditar esa selección.
