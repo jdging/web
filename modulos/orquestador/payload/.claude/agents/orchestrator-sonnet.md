@@ -3,7 +3,7 @@ name: orchestrator-sonnet
 description: Segundo plan B explícito del conductor cuando Fable y Opus no están disponibles. Conserva el protocolo con Claude Sonnet.
 model: sonnet
 effort: high
-tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner)
+tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner), mcp__claude-in-chrome__*
 permissionMode: default
 skills:
   - orchestrating-development

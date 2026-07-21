@@ -3,7 +3,7 @@ name: orchestrator
 description: Conductor principal para descubrir, planificar y ejecutar features por etapas coordinando agentes y Codex CLI. Usar de forma explícita para orquestación completa.
 model: fable
 effort: high
-tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner)
+tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner), mcp__claude-in-chrome__*
 permissionMode: default
 skills:
   - orchestrating-development

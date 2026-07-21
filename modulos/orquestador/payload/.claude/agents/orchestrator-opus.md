@@ -3,7 +3,7 @@ name: orchestrator-opus
 description: Plan B explícito del conductor cuando Fable no está disponible. Conserva el mismo protocolo con Claude Opus.
 model: opus
 effort: high
-tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner)
+tools: Read, Grep, Glob, Bash, Write, Edit, Skill, Agent(architecture-reviewer, qa-runner), mcp__claude-in-chrome__*
 permissionMode: default
 skills:
   - orchestrating-development

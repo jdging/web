@@ -3,6 +3,11 @@
 > Registro de cambios del template maestro. Entradas nuevas ARRIBA. Se actualiza cada vez que
 > cambia `base/`, `modulos/` o los documentos cerebro (LEEME/INICIAR/CAPTURAR).
 
+## 2026-07-21 — Orquestador v2.0.3: acceso a Claude in Chrome
+- Los agentes conductor Fable, Opus y Sonnet incluyen explícitamente
+  `mcp__claude-in-chrome__*` en su lista de herramientas, para poder ejecutar el QA autorizado en
+  Chrome cuando Claude Code se inicia con `--chrome`.
+
 ## 2026-07-20 — Orquestador v2.0.2: selección de paquete Windows completo
 - El wrapper evalúa todos los binarios de Codex disponibles y prioriza la versión más reciente que
   incluya los helpers del sandbox nativo, evitando instalaciones antiguas heredadas por `PATH`.
