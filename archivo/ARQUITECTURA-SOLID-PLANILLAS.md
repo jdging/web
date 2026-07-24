@@ -1,10 +1,10 @@
 # Orquestador — Arquitectura SOLID para planillas de cálculo y herramientas técnicas standalone
 
-> Estado general: **PAUSADO** (sesión cerrada 2026-07-23; retomar con
-> `RETOMAR-arquitectura-solid-planillas.md`). Rama: `main`. Riesgo: bajo (solo documentación en
-> `ideas/`, sin código de producto ni datos reales). Conductor: Claude (Fable/high). Revisor de
-> plan: Codex `plan-reviewer` (Sol/high, read-only). Implementador de esta etapa: Codex
-> `documentation-runner` (Luna/high, workspace-write).
+> Estado general: **CERRADO** (2026-07-24). Etapa 1 completa; Etapa 2 descartada por decisión del
+> responsable (ver §4). Sin etapas pendientes. Archivado en `archivo/` — ver nota de archivado al
+> final. Rama: `main`. Riesgo: bajo (solo documentación en `ideas/`, sin código de producto ni
+> datos reales). Conductor: Claude (Fable/high). Revisor de plan: Codex `plan-reviewer` (Sol/high,
+> read-only). Implementador de Etapa 1: Codex `documentation-runner` (Luna/high, workspace-write).
 
 ## 1. Objetivo
 
@@ -113,8 +113,17 @@ alta/baja/cambio. Evidencia en
 
 | Etapa | Spec | Implementación | Review arquitectónico | QA auto | code-reviewer | QA humano | Estado |
 |---|---|---|---|---|---|---|---|
-| 1 — Documento de arquitectura | `APPROVED` (plan-reviewer, 6 rondas) | `COMPLETED` (documentation-runner) | hecha por el conductor (Claude), sin correcciones necesarias | `PASS` (manifiesto de hashes, alcance limitado a los 2 archivos autorizados) | `APPROVED` | pendiente | `WAITING_USER` (falta QA humano para cerrar) |
-| 2 — Ejemplo runnable de juguete | pendiente (spec propio, no escrito) | — | — | — | — | — | `WAITING_USER` (prevista desde el descubrimiento; no requiere `CHANGE_REQUEST`; sí requiere spec propio + ronda de `plan-reviewer` antes de implementar) |
+| 1 — Documento de arquitectura | `APPROVED` (plan-reviewer, 6 rondas) | `COMPLETED` (documentation-runner) | hecha por el conductor (Claude), sin correcciones necesarias | `PASS` (manifiesto de hashes, alcance limitado a los 2 archivos autorizados) | `APPROVED` | `APROBADO` (responsable, 2026-07-24) | `CERRADA` (2026-07-24) |
+| 2 — Ejemplo runnable de juguete | — | — | — | — | — | — | `DESCARTADA` (2026-07-24, decisión del responsable) |
+
+**Motivo de descarte de Etapa 2:** estaba marcada como opcional/a confirmar desde el
+descubrimiento (nunca fue un requisito bloqueante de Etapa 1). El objetivo real de esta
+iniciativa es escribir las bases constitucionales del patrón (documento de referencia), no
+producir código de ejemplo. La validación real del patrón queda para cuando se abra el
+`CHANGE_REQUEST` contra el caso real (`alma-variable`), en vez de un ejemplo de juguete
+descartable. Los dos casos de runtime que Etapa 1 dejó diferidos (transición atómica
+entrada/resultado; persistencia de valores no finitos en `SAVED_STATE`) quedan pendientes de
+resolver ahí, contra fórmulas y datos reales, no en un spec de Etapa 2 separado.
 
 ## 5. Archivos afectados por Etapa 1
 
@@ -135,4 +144,12 @@ Evidencia de Etapa 1 (`documentation-runner`, QA, `code-reviewer`) en
 `.orchestration/runs/arquitectura-solid-planillas/etapa-1/` y
 `.orchestration/runs/arquitectura-solid-planillas/documentation-runner|code-reviewer/`.
 
-*Creado 2026-07-23.*
+## 8. Nota de archivado
+
+Orquestador cerrado y movido a `archivo/ARQUITECTURA-SOLID-PLANILLAS.md` el 2026-07-24 (ciclo de
+vida: raíz = orquestadores activos, `archivo/` = material cerrado). El entregable vigente sigue
+siendo `ideas/arquitectura-solid-planillas.md`, que ahora referencia esta ruta archivada en vez de
+la raíz. Si se abre el `CHANGE_REQUEST` de validación contra el caso real, ese es un orquestador
+nuevo e independiente, no una reapertura de este.
+
+*Creado 2026-07-23. Cerrado y archivado 2026-07-24.*

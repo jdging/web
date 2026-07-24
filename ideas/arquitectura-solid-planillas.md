@@ -240,5 +240,5 @@ estrategia de tests de caracterización.
 
 - `modulos/marca/planillas/INSTRUCTIVO_PLANILLAS.md` — presentación, marca, guardado
   standalone y orden del `<script>` final (no se modifica ni se duplica acá).
-- `ARQUITECTURA-SOLID-PLANILLAS.md` (raíz de `/x`) — orquestador de esta iniciativa, con el
-  detalle de las decisiones congeladas y su historial de revisión.
+- `archivo/ARQUITECTURA-SOLID-PLANILLAS.md` — orquestador cerrado de esta iniciativa (2026-07-24),
+  con el detalle de las decisiones congeladas y su historial de revisión.
