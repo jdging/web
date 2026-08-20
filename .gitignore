@@ -17,3 +17,6 @@
 !.codex/agents/
 !.codex/agents/*.toml
 # <<< orquestador-claude-codex <<<
+
+# Datos de CV: contienen datos personales y de clientes. Repo publico: NO versionar.
+ref/
