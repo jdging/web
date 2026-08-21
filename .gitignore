@@ -23,3 +23,6 @@
 
 # Datos de CV: contienen datos personales y de clientes. Repo publico: NO versionar.
 ref/
+
+# Sitio comercial: repo git propio dentro del contenedor, no se versiona aca (C2-bis).
+/web/

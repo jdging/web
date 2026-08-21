@@ -1,12 +1,14 @@
 # RETOMAR — Sitio comercial JDG (reemplazo de Portafolio)
 
-- **Estado:** `PLANNING` — decisiones del responsable cerradas; plan en ronda 2 de revisión.
+- **Estado:** `WAITING_USER` — plan v5 completo; el gate agotó sus 3 rondas.
 - **Última sesión:** 2026-08-21
 - **Conductor:** Claude, **fallback `orchestrator-opus` activado** (Fable no disponible).
 - **Modo:** autónomo autorizado por el responsable el 2026-08-21, con freno duro vigente en
   producción, datos reales, merge, tag y deploy.
-- **Gate actual:** `plan-reviewer` de Codex, **ronda 2 de 3** → `REQUEST_CHANGES`.
-  Aplicado en la propuesta v4. Ronda 3 es la última antes de `WAITING_USER` forzado.
+- **Gate actual:** `plan-reviewer` de Codex, **ronda 3 de 3** → `REQUEST_CHANGES`.
+  **Límite de rondas alcanzado: el flujo obliga a `WAITING_USER`.** Los 8 hallazgos de la ronda 3
+  ya están aplicados en la propuesta v5; eran contradicciones internas y de orden, sin decisiones
+  de producto. Falta que el responsable elija entre gastar una ronda 4 o aprobar el plan a mano.
 
 > Regla de este archivo: es público. **No se nombran clientes, empleadores, proyectos de terceros,
 > teléfonos ni emails.** Sector, magnitud y rol, nada más. Ver §5.
@@ -84,9 +86,14 @@ nombraba en claro cinco clientes de empleadores, el empleador actual y dos proye
 Contradecía la propia frontera de datos del plan y la regla 4 de `CLAUDE.md`.
 
 - **Corregido en el working tree**: este archivo ya no los nombra.
-- **Pendiente de decisión del responsable**: si se reescribe la historia
-  (`git filter-repo` + force-push, borra la exposición del historial) o se acepta la exposición.
-  Reescribir historia es force-push: **está bajo freno duro**, no se ejecuta sin orden explícita.
+- **Pendiente de decisión del responsable**: reescribir la historia (`git filter-repo` +
+  force-push) o aceptar la exposición y registrar el riesgo residual.
+  **Reescribir NO borra la exposición**: reduce el descubrimiento en las refs normales del remoto,
+  pero no revoca clones, forks, caches de la plataforma ni copias ya descargadas. Force-push es
+  irreversible y externo: **no se ejecuta sin orden explícita**.
+  Procedimiento completo, alcance, ventana y criterio de cierre en
+  `.orchestration/INCIDENTE-2026-08-20-nombres-en-repo-publico.md` (evidencia local).
+  Es criterio obligatorio del gate 9a, no de la etapa 1.
 - Preexistente, fuera del alcance de este trabajo pero conviene revisarlo:
   `modulos/marca/planillas/INSTRUCTIVO_PLANILLAS.md` publica un teléfono en claro.
 
@@ -106,9 +113,12 @@ Contradecía la propia frontera de datos del plan y la regla 4 de `CLAUDE.md`.
 
 ## 7. Próximo paso exacto al retomar
 
-1. Correr `plan-reviewer` **ronda 3** (última) sobre la propuesta v4, en el mismo thread de Codex.
-2. Con `APPROVED`: etapa 0.5 (preflight de aislamiento de `/workspace/web`) y después etapa 1.
-3. Si vuelve `REQUEST_CHANGES`, el skill obliga a `WAITING_USER`: no hay ronda 4.
+1. **Decisión del responsable sobre el gate:** ronda 4 en un thread nuevo de `plan-reviewer`, o
+   aprobación manual del plan v5 con los riesgos ya documentados.
+2. **Etapa 0.5: EJECUTADA el 2026-08-21.** `/workspace/web` creado, `git init` propio, regla
+   anclada `/web/` en el `.gitignore` del padre. Verificación fail-closed en verde: el padre lo
+   ignora, los dos git roots difieren y no aparece como untracked.
+3. Con el gate cerrado: etapa 1 (matriz comercial, IA, ruteo, SEO, alcance profesional declarable).
 
 **Freno activo:** no se crea el repo remoto, no se activa Pages, no se toca `Portafolio` y no se
 reescribe historia. El scaffold local sí puede arrancar una vez que el plan esté en `APPROVED`.
