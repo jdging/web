@@ -11,6 +11,9 @@
 .claude/skills/*
 !.claude/skills/orchestrating-development/
 !.claude/skills/orchestrating-development/**
+# Skill de UI/UX acoplado al orquestador (symlink a .agents/skills/): sin esto, en otra
+# maquina el skill no se levanta junto al orquestador.
+!.claude/skills/front-end-developer
 
 !.codex/
 .codex/*

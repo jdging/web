@@ -25,3 +25,14 @@ Claude conduce con Fable/high. Si Fable no está disponible al iniciar la sesió
 elige de forma explícita `orchestrator-opus` y, si Opus tampoco está disponible,
 `orchestrator-sonnet`. El revisor de arquitectura usa `inherit` y acompaña el modelo del conductor.
 Nunca cambiar de modelo dentro de una sesión existente ni ocultar el fallback.
+
+## Skills obligatorios por tipo de trabajo
+
+Si la etapa toca UI, UX, HTML, CSS, componentes, layout, accesibilidad o diseño visual, el conductor
+levanta también el skill `front-end-developer` antes de armar el prompt. Ese skill es la autoridad de
+UI/UX: sus reglas son contrato de implementación y criterio de revisión, no sugerencia.
+
+Codex no tiene acceso a los skills de Claude. El conductor **transcribe el contrato de UI dentro del
+prompt** que va a `implementer-bounded` / `implementer-critical`, y lo repite en el prompt de
+`code-reviewer` para que el diff se evalúe contra el contrato además del spec de la etapa. Si el
+contrato no viaja en el prompt, no rige.
