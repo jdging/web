@@ -99,7 +99,14 @@ Contradecía la propia frontera de datos del plan y la regla 4 de `CLAUDE.md`.
 
 ## 6. Lo que falta decidir
 
-**Único punto que requiere decisión humana irreversible:**
+**Lo primero al retomar — decisión del gate (bloquea la etapa 1):**
+
+0. El `plan-reviewer` agotó sus **3 rondas** y el flujo obliga a `WAITING_USER`. Elegir:
+   **(a)** aprobar a mano el plan v5 y arrancar la etapa 1 — recomendación del conductor, porque los
+   8 hallazgos de la ronda 3 ya están aplicados y ninguno tocaba producto; o
+   **(b)** abrir un thread nuevo de `plan-reviewer` para una ronda 4.
+
+**Decisión humana irreversible, no bloquea la etapa 1:**
 
 1. **Historia del repo** (§5): reescribir con `filter-repo` + force-push, o aceptar la exposición y
    documentar el riesgo residual. Force-push es externo e irreversible: no se ejecuta sin orden.
