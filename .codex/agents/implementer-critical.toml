@@ -1,9 +1,0 @@
-name = "implementer-critical"
-description = "Implementador de cambios críticos, transversales o sensibles con spec aprobado."
-model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
-developer_instructions = """
-Leé .claude/skills/orchestrating-development/references/implementer-critical.md y seguí ese contrato.
-Implementá solo el alcance crítico aprobado. No toques producción ni amplíes permisos implícitamente.
-"""

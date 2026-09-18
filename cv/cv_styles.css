@@ -1,0 +1,513 @@
+/*
+ * ═══════════════════════════════════════════════════════════
+ *  JDG CV — DESIGN SYSTEM
+ *  Autor: JDG · Sistemas & Estructuras
+ *  Versión: 1.0.0
+ *
+ *  USO: Vincular desde el HTML generado con:
+ *  <link rel="stylesheet" href="cv_styles.css">
+ *
+ *  FUENTES: Cargar desde Google Fonts antes de este CSS:
+ *  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+ * ═══════════════════════════════════════════════════════════
+ */
+
+
+/* ── TOKENS DE COLOR Y TIPOGRAFÍA ── */
+:root {
+  --navy:          #2b3263;   /* color principal — títulos, bordes, tags highlight */
+  --navy-deep:     #1e2348;   /* cargo/título de entrada */
+  --accent:        #4a4f6e;   /* uso secundario de acento */
+  --bg:            #ffffff;
+  --bg-subtle:     #f4f5f8;   /* fondo de summary, skill-tags, project-box */
+  --text-primary:  #1a1d2e;   /* texto normal */
+  --text-secondary:#6b7194;   /* empresa, contacto */
+  --text-muted:    #9098b8;   /* fechas, section labels */
+  --border:        #e2e4ed;
+  --border-light:  #eef0f5;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body:    'Lato', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+
+/* ── RESET MÍNIMO ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ── BASE ── */
+html {
+  font-size: 13.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.65;
+}
+
+
+/* ══════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════ */
+
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 56px;
+}
+
+
+/* ══════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════ */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 2px solid var(--navy);
+}
+
+.header-left { flex: 1; }
+
+/*
+ * LOGO — dos modos de uso:
+ *
+ * Modo A (referenciado): <img src="logoclaro.svg" class="logo" alt="JDG">
+ * Modo B (incrustado):   <div class="logo"><svg ...contenido de logoclaro.svg...</svg></div>
+ *
+ * Modo B hace el HTML completamente auto-contenido (sin dependencia de archivo externo).
+ * Para usarlo: abrir logoclaro.svg como texto y pegar el bloque <svg>...</svg>
+ * dentro de <div class="logo">...</div> en el header del HTML generado.
+ */
+.header .logo {
+  display: block;
+  height: 32px;
+  width: auto;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+/* Cuando el logo es un SVG inline dentro de un wrapper .logo */
+.header .logo svg {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+.header h1 {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-top: 4px;
+}
+
+.header .tagline {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  padding-top: 4px;
+}
+
+.contact a,
+.contact span {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.contact a:hover { color: var(--navy); }
+
+
+/* ══════════════════════════════════════
+   SUMMARY / RESUMEN PROFESIONAL
+   Bloque destacado con borde izquierdo navy
+   ══════════════════════════════════════ */
+
+.summary {
+  margin-top: 22px;
+  padding: 16px 20px;
+  background: var(--bg-subtle);
+  border-radius: 6px;
+  border-left: 3px solid var(--navy);
+}
+
+.summary p {
+  font-size: 12.5px;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+
+/* ══════════════════════════════════════
+   SECCIONES — estructura base
+   ══════════════════════════════════════ */
+
+.section { margin-top: 24px; }
+
+/* Etiqueta de sección: todo caps, espaciado generoso, línea inferior */
+.section-label {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+
+/* ══════════════════════════════════════
+   COMPETENCIAS TÉCNICAS
+   ══════════════════════════════════════ */
+
+.competence-block { margin-bottom: 9px; }
+.competence-block:last-child { margin-bottom: 0; }
+
+/* Título de categoría: caps pequeño en navy */
+.competence-cat {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.competence-text {
+  font-size: 12px;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+
+/* ── SKILL TAGS ── */
+/* Chips visuales al pie de la sección de competencias */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 12px;
+}
+
+.skill-tag {
+  font-family: var(--font-heading);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 3px 9px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* Tags destacados: fondo navy, texto blanco — para skills críticos del puesto */
+.skill-tag.highlight {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+
+
+/* ══════════════════════════════════════
+   EXPERIENCIA LABORAL
+   ══════════════════════════════════════ */
+
+.entry { margin-bottom: 16px; }
+.entry:last-child { margin-bottom: 0; }
+
+/* Fila cargo + fecha */
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Cargo / título del puesto */
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-deep);
+  letter-spacing: -0.01em;
+}
+
+/* Fecha en mono pequeño */
+.entry-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Empresa */
+.entry-subtitle {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+}
+
+/* Lista de logros */
+.entry ul {
+  margin-top: 4px;
+  padding-left: 16px;
+}
+
+.entry li {
+  font-size: 11.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2px;
+}
+
+.entry li::marker { color: var(--navy); }
+
+
+/* ══════════════════════════════════════
+   PROYECTOS DESTACADOS
+   Caja con borde sutil, fondo suave
+   ══════════════════════════════════════ */
+
+.project-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.project-box:last-child { margin-bottom: 0; }
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+/* Nombre del proyecto */
+.project-name {
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--navy-deep);
+  letter-spacing: -0.01em;
+}
+
+/* Rol en el proyecto */
+.project-role {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Descripción introductoria del proyecto */
+.project-desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* Lista de logros del proyecto */
+.project-box ul {
+  padding-left: 16px;
+  margin-bottom: 8px;
+}
+
+.project-box li {
+  font-size: 11.5px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2px;
+}
+
+.project-box li::marker { color: var(--navy); }
+
+/* Stack tecnológico al pie del proyecto */
+.project-stack {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+
+/* ══════════════════════════════════════
+   EDUCACIÓN
+   ══════════════════════════════════════ */
+
+.edu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.edu-item:last-child { margin-bottom: 0; }
+
+.edu-text {
+  font-size: 12px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.edu-text strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy-deep);
+}
+
+.edu-date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+
+/* ══════════════════════════════════════
+   IDIOMAS
+   ══════════════════════════════════════ */
+
+.lang-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.lang-item {
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.lang-item strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy-deep);
+}
+
+.lang-detail {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+
+/* ══════════════════════════════════════
+   FOOTER OPCIONAL
+   ══════════════════════════════════════ */
+
+.footer {
+  margin-top: 28px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+
+/* ══════════════════════════════════════
+   PRINT — optimizado para A4
+   ══════════════════════════════════════ */
+
+@media print {
+  html { font-size: 11.5px; }
+  body { background: #fff; }
+  .page { max-width: none; padding: 0; margin: 0; }
+
+  @page {
+    size: A4;
+    margin: 14mm 16mm 12mm 16mm;
+  }
+
+  .contact a { color: var(--text-secondary) !important; }
+
+  /* Forzar colores de impresión para fondos y highlight */
+  .skill-tag.highlight {
+    background: var(--navy) !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .skill-tag,
+  .summary,
+  .project-box {
+    background: var(--bg-subtle) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .header { border-bottom-color: var(--navy) !important; }
+
+  /* Evitar cortes de página dentro de bloques */
+  .entry        { break-inside: avoid; }
+  .section      { break-inside: avoid; }
+  .project-box  { break-inside: avoid; }
+  .edu-item     { break-inside: avoid; }
+}
+
+
+/* ══════════════════════════════════════
+   RESPONSIVE — pantalla chica
+   ══════════════════════════════════════ */
+
+@media screen and (max-width: 640px) {
+  .page           { padding: 28px 24px; }
+  .header         { flex-direction: column; }
+  .contact        { align-items: flex-start; }
+  .entry-header   { flex-direction: column; gap: 2px; }
+  .project-header { flex-direction: column; gap: 2px; }
+  .edu-item       { flex-direction: column; gap: 2px; }
+  .lang-row       { flex-direction: column; gap: 8px; }
+}

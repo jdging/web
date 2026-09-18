@@ -1,0 +1,1223 @@
+{
+  "_meta": {
+    "descripcion": "Fuente de verdad para generación de CVs de JDG. Para datos de portfolio web (imágenes, proyectos individuales de empleadores), ver proyectos.json.",
+    "version": "1.7.1",
+    "ultima_actualizacion": "2026-07-09",
+    "inicio_carrera": "2021-08",
+    "convencion_experiencia": "Los resúmenes de 'perfiles_disponibles' mencionan años de experiencia. Cualquier IA que use o actualice este archivo debe recalcular los años transcurridos desde 'inicio_carrera' hasta la fecha actual y, si algún texto quedó desactualizado (años, empleo actual, capacidades nuevas), proponer la corrección al usuario en lugar de ignorarlo.",
+    "logo": "logoclaro.svg",
+    "convencion_logo": "Por defecto el logo NO se incluye en los CVs generados. Solo incluirlo si el usuario lo pide explícitamente.",
+    "uso": "Cada sección tiene un campo 'incluir_en' que lista los perfiles donde aparece. Perfiles disponibles: 'estructural', 'sistemas', 'todoterreno'. Al agregar un perfil nuevo, definirlo en 'perfiles_disponibles' y actualizar los 'incluir_en' correspondientes.",
+    "convencion_fechas": "Formato YYYY-MM. null en fecha_fin = presente. Fechas aproximadas marcadas con '_aprox: true'.",
+    "convencion_ids": "Proyectos en experiencia_laboral: {empresa_abbr}_{descripcion}. Proyectos freelance: {cliente_abbr}_{descripcion}. Proyectos propios: nombre descriptivo.",
+    "convencion_imagenes": "campo 'imagenes' es lista de nombres de archivo .webp. La ruta completa se deriva del contexto: data/images/{seccion}/{padre_id}/{proyecto_id}/"
+  },
+  "persona": {
+    "_nota": "Datos fijos que aparecen en TODOS los CVs sin excepción",
+    "nombre": "Juan David Guzmán",
+    "ubicacion": "Rosario, Argentina",
+    "telefono": "(341) 360-3215",
+    "email": "ing.guzmanjuandavid@gmail.com",
+    "linkedin": "linkedin.com/in/ingjdg",
+    "linkedin_url": "https://linkedin.com/in/ingjdg",
+    "portfolio": "jdging.github.io/Portafolio",
+    "portfolio_url": "https://jdging.github.io/Portafolio",
+    "marca": "JDG · Sistemas & Estructuras"
+  },
+  "perfiles_disponibles": {
+    "_nota": "Define los enfoques de CV. Cada perfil tiene su tagline y resumen para el header. Agregar uno nuevo acá y referenciarlo en los 'incluir_en' de cada sección/logro.",
+    "estructural": {
+      "tagline": "Ingeniero Civil · Especialista en Estructuras · Proyectos Industriales",
+      "resumen": "Ingeniero Civil con especialización en estructuras y más de 5 años de experiencia en proyectos industriales de gran escala. Cálculo y diseño de estructuras de acero y hormigón aplicando normativas CIRSOC, AISC y ACI. Experiencia en etapas conceptual, básica, detalle, fabricación y montaje, incluyendo gestión de obra y trato directo con clientes. Docente universitario activo en la UNR."
+    },
+    "sistemas": {
+      "tagline": "Ingeniero Civil · Desarrollo de Sistemas de Gestión · Firebase & Google Ecosystem",
+      "resumen": "Ingeniero Civil con perfil híbrido orientado al diseño y desarrollo de sistemas de gestión operacional. Diseña productos web completos desde arquitectura de datos, experiencia de usuario y reglas de negocio hasta despliegue, documentación y operación. Experiencia en Firebase, Firestore, Auth, Hosting, Google Drive, generación de PDFs, automatización documental y herramientas de gestión para procesos comerciales y operativos."
+    },
+    "todoterreno": {
+      "tagline": "Ingeniero Civil · Diseño Estructural & Sistemas de Gestión · Proyectos Industriales",
+      "resumen": "Ingeniero Civil con especialización en estructuras y más de 5 años de experiencia en proyectos industriales. Perfil híbrido: combina cálculo estructural de acero y hormigón con diseño e implementación de sistemas de gestión completos, desde arquitectura de datos y reglas de negocio hasta interfaces web, documentos PDF, dashboards y operación. Construye soluciones propias con Firebase, Google Apps Script, AppSheet, Looker Studio, Python y JavaScript sobre infraestructura gratuita o de bajo costo. Docente universitario activo en la UNR. Inglés B2 certificado."
+    }
+  },
+  "educacion": {
+    "_nota": "Aparece en todos los CVs. 'tipo': grado | posgrado | curso | certificacion",
+    "items": [
+      {
+        "id": "edu_especializacion",
+        "titulo": "Especialización en Ingeniería Estructural",
+        "institucion": "Universidad Nacional de Rosario (UNR)",
+        "ubicacion": "Rosario, Argentina",
+        "anio_inicio": 2023,
+        "anio_fin": 2024,
+        "tipo": "posgrado",
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "id": "edu_civil",
+        "titulo": "Ingeniería Civil",
+        "institucion": "Universidad Nacional de Rosario (UNR)",
+        "ubicacion": "Rosario, Argentina",
+        "anio_inicio": 2015,
+        "anio_fin": 2021,
+        "tipo": "grado",
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ]
+      }
+    ]
+  },
+  "idiomas": {
+    "items": [
+      {
+        "idioma": "Español",
+        "nivel": "Nativo",
+        "certificacion": null,
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "idioma": "Inglés",
+        "nivel": "B2",
+        "certificacion": "Cambridge",
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ]
+      }
+    ]
+  },
+  "competencias_tecnicas": {
+    "_nota": "Dos partes: 'categorias' (bloques de texto descriptivo) y 'skills_tags' (chips visuales). 'destacado: true' = chip en color navy. 'categoria' es solo para organización interna.",
+    "categorias": [
+      {
+        "id": "calculo_estructural",
+        "nombre": "Cálculo y Diseño Estructural",
+        "descripcion": "Estructuras de acero y hormigón armado. Normativas CIRSOC, AISC, ACI. Herramientas principales: SAP2000 (análisis y cálculo), Tekla Structures (modelado 3D y planos de fabricación) e IDEA StatiCa (diseño y verificación de conexiones). Proyectos en etapas conceptual, básica, detalle, fabricación y montaje. Cálculo hidrológico-hidráulico.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "id": "gestion_oficina",
+        "nombre": "Gestión y Oficina Técnica",
+        "descripcion": "Auditoría y validación técnica de memorias de cálculo y propuestas de contratistas. Definición de alcances técnicos y elaboración de especificaciones para licitación. Armado de legajos para registro de licitadores provinciales.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "id": "sistemas_gestion",
+        "nombre": "Desarrollo de Sistemas de Gestión",
+        "descripcion": "Diseño de sistemas de gestión multi-entidad: arquitectura de datos, reglas de negocio, interfaces CRUD, presupuestos, documentos HTML exportables a PDF, trazabilidad operativa y dashboards. Desarrollo con Firebase Auth, Cloud Firestore, Firebase Hosting, HTML/CSS/JavaScript vanilla, Google Drive, Apps Script, AppSheet y Looker Studio.",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "id": "supervision_obra",
+        "nombre": "Supervisión de Obra",
+        "descripcion": "Control de cumplimiento de contratos, rehabilitación estructural, inspección en taller y campo. Supervisión de fabricación de elementos prefabricados y estructuras metálicas.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      }
+    ],
+    "skills_tags": [
+      {
+        "nombre": "CIRSOC",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "AISC",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "ACI",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "SAP2000",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "STAAD.Pro",
+        "destacado": false,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "RFEM",
+        "destacado": false,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "IDEA StatiCa",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Tekla Structures",
+        "destacado": true,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "AutoCAD 2D/3D",
+        "destacado": false,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Modelado BIM",
+        "destacado": false,
+        "categoria": "estructural",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Google Apps Script",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Python",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Excel VBA",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "AppSheet",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Looker Studio",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "HTML/CSS",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "GitHub Pages",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Google Calendar API",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Google Drive API",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Firebase",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Cloud Firestore",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Firebase Auth",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Firebase Hosting",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "JavaScript Vanilla",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "html2pdf.js",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "Arquitectura de datos",
+        "destacado": true,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "nombre": "UX operacional",
+        "destacado": false,
+        "categoria": "sistemas",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      }
+    ]
+  },
+  "experiencia_laboral": {
+    "_nota": "Ordenado cronológico inverso. 'logros' son los bullets del CV, filtrados por 'incluir_en'. Los proyectos individuales de cada empleador viven en proyectos.json.",
+    "items": [
+      {
+        "id": "flexio",
+        "tipo": "relacion_dependencia",
+        "cargo": "Calculista de Estructuras Metálicas",
+        "empresa": "Flexio",
+        "sector": "Estructuras metálicas · Ingeniería y fabricación",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2026-07",
+        "fecha_fin": null,
+        "_nota": "Rol integral: ingeniería básica y de detalle, modelo 3D y fabricación. Gestión propia de obras asignadas con trato directo con clientes. Incorporación de innovaciones de optimización de cálculos a la oficina técnica.",
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Ingeniería básica y de detalle de estructuras metálicas: cálculo estructural, modelado 3D y documentación para fabricación.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Gestión integral de obras asignadas: trato directo con clientes desde la definición del alcance hasta la entrega.",
+            "incluir_en": [
+              "estructural",
+              "sistemas",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Incorporación de innovaciones de optimización de cálculos a la oficina técnica.",
+            "incluir_en": [
+              "sistemas",
+              "todoterreno"
+            ]
+          }
+        ],
+        "proyectos": [
+          {
+            "id": "flexio_portico_ensayos",
+            "nombre": "Pórtico Metálico para Ensayos de Cargas",
+            "fecha": "2026-07",
+            "fecha_fin": null,
+            "_aprox": true,
+            "descripcion": "Cálculo y fabricación de pórtico metálico destinado a ensayos de cargas.",
+            "tags": [
+              "estructura metálica",
+              "cálculo",
+              "fabricación",
+              "pórtico",
+              "ensayos de carga"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "flexio_alero_aeropuerto_rosario",
+            "nombre": "Alero de Ingreso — Aeropuerto de Rosario",
+            "fecha": "2026-07",
+            "fecha_fin": null,
+            "_aprox": true,
+            "descripcion": "Cálculo, fabricación y gestión de obra de alero metálico en el ingreso del Aeropuerto de Rosario.",
+            "tags": [
+              "estructura metálica",
+              "cálculo",
+              "fabricación",
+              "gestión de obra",
+              "alero",
+              "aeropuerto"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "excel_consulting",
+        "tipo": "relacion_dependencia",
+        "cargo": "Ingeniero Estructural",
+        "empresa": "Excel Consulting",
+        "sector": "Ingeniería industrial · Agroindustria y energía",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2024-01",
+        "fecha_fin": "2026-06",
+        "_nota": "Clientes principales: Cargill, Terminal 6, Louis Dreyfus Company. Casi todo el trabajo es para el proceso de extracción de aceite de soja. Herramientas base: Tekla para modelos y planos de ingeniería básica; SAP2000 y RFEM para cálculo; planos de detalle y fabricación cuando corresponde.",
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Diseño y cálculo de estructuras metálicas y de hormigón para proyectos industriales de gran escala: plantas de extracción de aceite de soja, terminales portuarias y silos de almacenamiento. Clientes: Cargill, Terminal 6, Louis Dreyfus Company.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Elaboración de memorias de cálculo, especificaciones técnicas y planos en etapas de ingeniería básica, detalle, fabricación y montaje. Normativas CIRSOC y estándares internacionales. Software: Tekla Structures, SAP2000, RFEM.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Auditoría y validación técnica de memorias de cálculo y propuestas de contratistas.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Proyectos de alta complejidad y larga duración: sistema integrado de dos torres metálicas con galería, noria, silo y nave vehicular para Terminal 6; torre de atención de DT con water scrubber y redler para Cargill.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Cómputos métricos de obra civil y metálica para proyección de plantas industriales completas, con estimaciones CAPEX ±30%: planta Louis Dreyfus Company (5.000 t de acero, 50.000 m³ de hormigón) y planta Terminales y Servicios (2.500 t de acero, 25.000 m³ de hormigón).",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Desarrollo de software de ingeniería propio (Python y Excel VBA): aplicaciones web para cálculo estructural, base de datos dinámica de equipos, y herramientas internas que redujeron tareas de 8 horas a segundos.",
+            "incluir_en": [
+              "sistemas",
+              "todoterreno"
+            ]
+          }
+        ],
+        "proyectos": [
+          {
+            "id": "exc_celda_200000_cargill_brasil",
+            "nombre": "Predimensionamiento de Celda de 200.000 t — Cargill Brasil",
+            "fecha": "2026-04",
+            "fecha_fin": "2026-04",
+            "descripcion": "Predimensionamiento estructural de una celda de almacenamiento de 200.000 toneladas para Cargill en Brasil. La solución contempló una celda con fondo cavado para almacenamiento de producto, fundada sobre pilotes. Luego se desarrollaron planos de encofrado para cotización.",
+            "tags": [
+              "hormigón armado",
+              "predimensionamiento",
+              "fundaciones",
+              "pilotes",
+              "planos de encofrado",
+              "Cargill",
+              "agroindustria",
+              "Brasil"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "exc_columna_linea_vida",
+            "nombre": "Reforma de Columna Metálica para Línea de Vida",
+            "fecha": "2026-04",
+            "fecha_fin": "2026-04",
+            "_aprox": true,
+            "descripcion": "Cálculo metálico de reforma de columna existente para adecuarla como soporte de una línea de vida.",
+            "tags": [
+              "estructura metálica",
+              "cálculo",
+              "reforma",
+              "línea de vida",
+              "verificación de estructura existente"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "exc_computo_planta_dreyfus",
+            "nombre": "Cómputo Metálico y Civil — Proyección de Planta Completa, Louis Dreyfus Company",
+            "fecha": "2026-05",
+            "fecha_fin": "2026-05",
+            "_aprox": true,
+            "descripcion": "Cómputo métrico de obra metálica y civil para la proyección de una planta industrial completa de Louis Dreyfus Company, con el objetivo de obtener una estimación CAPEX ±30%. Magnitudes: 5.000 t de acero y 50.000 m³ de hormigón.",
+            "tags": [
+              "cómputo métrico",
+              "CAPEX",
+              "estructura metálica",
+              "hormigón armado",
+              "Louis Dreyfus Company",
+              "agroindustria",
+              "planta industrial"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "exc_computo_planta_tys",
+            "nombre": "Cómputo Civil y Metálico — Proyección de Planta Completa, Terminales y Servicios",
+            "fecha": "2026-05",
+            "fecha_fin": "2026-05",
+            "_aprox": true,
+            "descripcion": "Cómputo métrico de obra civil y metálica para la proyección de una planta industrial completa de Terminales y Servicios, con el objetivo de obtener una estimación CAPEX ±30%. Magnitudes: 25.000 m³ de hormigón y 2.500 t de acero.",
+            "tags": [
+              "cómputo métrico",
+              "CAPEX",
+              "estructura metálica",
+              "hormigón armado",
+              "Terminales y Servicios",
+              "agroindustria",
+              "planta industrial"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "exc_nave_descarga_camiones_cargill",
+            "nombre": "Reforma de Nave para Descarga de Camiones — Cargill",
+            "fecha": "2026-06",
+            "fecha_fin": "2026-06",
+            "_aprox": true,
+            "descripcion": "Reforma de nave existente para descarga de camiones en planta Cargill. Se adosó una torre con plataforma sobre la estructura existente, sin estructura independiente, para el soporte e inspección de un nuevo ducto, y se agregó un puente en el interior de la nave para el calado de los camiones. Cálculo en SAP2000 y modelo al detalle en Tekla Structures para la generación de planos de fabricación.",
+            "tags": [
+              "estructura metálica",
+              "reforma",
+              "nave industrial",
+              "torre",
+              "plataforma",
+              "ducto",
+              "SAP2000",
+              "Tekla Structures",
+              "planos de fabricación",
+              "Cargill",
+              "agroindustria"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "exc_soportes_bandejas_cofco",
+            "nombre": "Soportes para Bandejas — COFCO",
+            "fecha": "2026-06",
+            "fecha_fin": "2026-06",
+            "_aprox": true,
+            "descripcion": "Cálculo civil y metálico de soportes para bandejas en planta COFCO.",
+            "tags": [
+              "estructura metálica",
+              "hormigón armado",
+              "cálculo",
+              "soportes",
+              "bandejas",
+              "COFCO",
+              "agroindustria"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "unr_docente",
+        "tipo": "docencia",
+        "cargo": "Docente — Estática Aplicada",
+        "empresa": "Universidad Nacional de Rosario (UNR)",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2022-11",
+        "fecha_fin": null,
+        "incluir_en": [
+          "estructural",
+          "sistemas",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Dictado de clases prácticas de Estática en la Facultad de Ingeniería Civil (UNR).",
+            "incluir_en": [
+              "estructural",
+              "sistemas",
+              "todoterreno"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ac_ingenieria",
+        "tipo": "relacion_dependencia",
+        "cargo": "Ingeniero Estructural",
+        "empresa": "AC Ingeniería",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2023-03",
+        "fecha_fin": "2023-12",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Cálculo y planos de torre de escalera metálica de adosamiento a estructura de hormigón existente. Proceso en 3 etapas de ensamblaje, 34 m de altura, manejo de 12 toneladas. SAP2000.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Cálculo, planos y control de fabricación de banderolas y pórticos viales.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Cálculo, planos y supervisión de fabricación de elementos prefabricados de hormigón armado (400 m²) para concesionaria Neostar.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deprop",
+        "tipo": "relacion_dependencia",
+        "cargo": "Ingeniero Civil",
+        "empresa": "Deprop SRL",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2021-08",
+        "fecha_fin": "2023-02",
+        "_nota": "Dentro del período en Deprop también se realizaron trabajos como independiente, listados en freelance_independiente > deprop_independiente.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Cálculo estructural, planos, planillas de doblado/armado y supervisión de múltiples obras: aulas para escuela pública en Acebal, jardín de infantes en Pérez, y casa Bora (estructura mixta sin vigas, fundación con pilotes). STAAD.Pro, SAP2000, AutoCAD.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Obra de recalce y ampliación del BNA Firmat: cálculo y supervisión de recalce por hundimiento diferencial de edificio institucional en servicio. Ampliación con nuevo edificio mixto hormigón + cubierta metálica, ejecución con pilotes.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Demolición y adintelamiento de local comercial: cálculo de refuerzos y bases, planos de ejecución, seguimiento de obra. SAP2000 y AutoCAD.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Verificaciones estructurales varias: control de armaduras BNA Puerto General San Martín, estructura de sujeción de cartel publicitario, cubierta aislada para el Superior de Comercio.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pilotes_pasantia",
+        "tipo": "pasantia",
+        "cargo": "Pasante de Ingeniería",
+        "empresa": "Ingeniería y Pilotes",
+        "ubicacion": "Rosario, Argentina",
+        "fecha_inicio": "2021-03",
+        "fecha_fin": "2021-06",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "logros": [
+          {
+            "texto": "Supervisión de obra de fundaciones con pilotes para nave industrial.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          },
+          {
+            "texto": "Armado de legajo para habilitación en Registro de Licitadores Provinciales.",
+            "incluir_en": [
+              "estructural",
+              "todoterreno"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "freelance_independiente": {
+    "_nota": "Trabajos realizados como independiente o por encargo directo, fuera de relación de dependencia. Organizados por cliente/comitente. En el CV pueden agruparse o seleccionarse según el perfil. Cada proyecto tiene 'tags' con keywords para filtrado futuro.",
+    "clientes": [
+      {
+        "id": "freelance_area_viva",
+        "cliente": "AREA VIVA",
+        "tipo_relacion": "desarrollo independiente",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "av_sistema_gestion_presupuestos",
+            "nombre": "Sistema Integral de Gestión y Presupuestos — AREA VIVA",
+            "fecha": "2026-04",
+            "fecha_fin": null,
+            "descripcion": "Diseño y desarrollo integral de una plataforma web para gestión comercial, presupuestaria y operativa de proyectos de interiorismo y amoblamiento. El sistema centraliza clientes, proveedores, categorías, catálogo unificado de artículos, proyectos, ambientes, presupuestos, documentos comerciales y seguimiento hasta entrega. Incluye autenticación de usuarios, reglas de seguridad, autosave, generación de salidas PDF versionadas, integración con Google Drive para imágenes y datos crudos de proveedores, y flujos administrativos con doble confirmación para edición de base maestra.",
+            "tags": [
+              "sistema de gestión",
+              "presupuestos",
+              "producto web",
+              "Firebase Auth",
+              "Cloud Firestore",
+              "Firebase Hosting",
+              "JavaScript Vanilla",
+              "Google Drive",
+              "PDF",
+              "arquitectura de datos",
+              "UX operacional",
+              "interiorismo",
+              "gestión comercial"
+            ],
+            "imagenes": [],
+            "stack": [
+              "Firebase Auth",
+              "Cloud Firestore",
+              "Firebase Hosting",
+              "HTML",
+              "CSS",
+              "JavaScript Vanilla",
+              "Google Drive",
+              "html2pdf.js"
+            ],
+            "logros": [
+              "Diseño de modelo de datos unificado para clientes, proveedores, categorías, artículos, proyectos, ambientes, presupuestos, paquetes, checklists, configuración y logs.",
+              "Implementación de CRUDs operativos con patrones reutilizables, validación, escape de HTML, timestamps de servidor y estados de edición.",
+              "Sistema de presupuestos con márgenes diferenciados por producto, soporte para artículos en USD con conversión y congelamiento de valores en ARS.",
+              "Generación de cuatro salidas documentales: lista de compras por proveedor, tabulado clásico, presupuesto estético con imágenes y checklist imprimible de seguimiento.",
+              "Diseño de flujo de autosave con guardado forzado antes de generar documentos o enviar emails, evitando presupuestos renderizados con cambios pendientes.",
+              "Arquitectura de PDFs versionados y cacheados, con invalidación ante cambios relevantes para optimizar tiempos y mantener trazabilidad documental.",
+              "Integración con Google Drive para imágenes de productos, datos crudos de proveedores y almacenamiento de documentos generados.",
+              "Definición de reglas operativas para administración segura del catálogo maestro, con advertencias visuales y doble confirmación antes de modificar la base.",
+              "Documentación técnica viva del proyecto: decisiones arquitectónicas, contexto, bitácora, lecciones aprendidas y convenciones de desarrollo."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "freelance_galassi",
+        "cliente": "Ing. Yolanda Galassi",
+        "tipo_relacion": "colaboración técnica",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "galassi_kcc",
+            "nombre": "Rehabilitación Club House KCC — Kentucky Club de Campo",
+            "fecha": "2023-06",
+            "_aprox": true,
+            "descripcion": "Edificio completamente incendiado. Desde el día 1: relevamiento del estado estructural post-siniestro, cálculo de refuerzos, nueva cubierta de madera, fundaciones, y supervisión integral de limpieza de escombros, demoliciones y obra completa de hormigón sobre tabiques existentes.",
+            "tags": [
+              "hormigón armado",
+              "rehabilitación estructural",
+              "cubierta de madera",
+              "supervisión de obra",
+              "post-siniestro",
+              "refuerzos"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_alero",
+            "nombre": "Alero de Entrada — Barrio Privado",
+            "fecha": "2022-11",
+            "descripcion": "Cálculo de estructura de hormigón armado de pequeño espesor con curvas. Ejecución de planos.",
+            "tags": [
+              "hormigón armado",
+              "elementos curvos",
+              "ingeniería básica",
+              "planos"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_ampliacion_casa",
+            "nombre": "Ampliación de Casa — Vigas y Columnas Metálicas",
+            "fecha": "2022-10",
+            "descripcion": "Cálculo de vigas y columnas metálicas para ampliación de vivienda.",
+            "tags": [
+              "estructura metálica",
+              "ampliación",
+              "vigas",
+              "columnas"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_planos_encofrado",
+            "nombre": "Planos de Encofrado — Edificio de Propiedad Horizontal",
+            "fecha": "2023-07",
+            "descripcion": "Ejecución de planos de encofrado para edificio en propiedad horizontal.",
+            "tags": [
+              "hormigón armado",
+              "documentación técnica",
+              "planos de encofrado"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_escalera_hiperbolica",
+            "nombre": "Escalera Hiperbólica",
+            "fecha": "2023-11",
+            "descripcion": "Cálculo de armaduras para escalera hiperbólica. Planos.",
+            "tags": [
+              "hormigón armado",
+              "elementos especiales",
+              "cálculo de armaduras",
+              "geometría compleja"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_postes_camara",
+            "nombre": "Postes de Cámara de Seguridad — Ciudad de Rosario",
+            "fecha": "2024-02",
+            "descripcion": "Cálculo y verificación de postes para cámaras de seguridad utilizados en vía pública en la ciudad de Rosario.",
+            "tags": [
+              "estructura metálica",
+              "vía pública",
+              "verificación",
+              "postes"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "galassi_vigas_cordones",
+            "nombre": "Verificación de Vigas de Barras Compuestas",
+            "fecha": "2025-03",
+            "descripcion": "Verificación de estructura existente: vigas conformadas por 4 cordones de barras de acero.",
+            "tags": [
+              "estructura metálica",
+              "verificación de estructura existente",
+              "barras compuestas"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_deprop_independiente",
+        "cliente": "Deprop SRL (trabajos independientes)",
+        "_nota": "Trabajos realizados como independiente para el mismo cliente, fuera o posterior a la relación de dependencia.",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "deprop_adint_saneduardo",
+            "nombre": "Adintelamiento — San Eduardo",
+            "fecha": "2023-12",
+            "descripcion": "Cálculo de perfiles metálicos de adintelamiento para vivienda en San Eduardo.",
+            "tags": [
+              "estructura metálica",
+              "adintelamiento",
+              "perfiles"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "deprop_adint_esc570",
+            "nombre": "Adintelamiento — Escuela N°570",
+            "fecha": "2025-07",
+            "descripcion": "Cálculo de adintelamiento para escuela. Planos de vigas y columnas metálicas y fundaciones de hormigón.",
+            "tags": [
+              "estructura metálica",
+              "hormigón armado",
+              "adintelamiento",
+              "planos",
+              "educación"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "deprop_supervision_nave_velezs",
+            "nombre": "Supervisión de Armaduras — Nave Industrial (Vélez Sársfield)",
+            "fecha": null,
+            "_aprox": true,
+            "descripcion": "Visita de supervisión y control de armaduras previo al hormigonado en nave industrial.",
+            "tags": [
+              "supervisión de obra",
+              "control de armaduras",
+              "nave industrial"
+            ],
+            "imagenes": []
+          },
+          {
+            "id": "deprop_andamio",
+            "nombre": "Verificación de Andamio Metálico",
+            "fecha": null,
+            "_aprox": true,
+            "descripcion": "Verificación y cálculo de andamio metálico.",
+            "tags": [
+              "estructura metálica",
+              "verificación",
+              "andamio"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_maldonado",
+        "cliente": "Ing. Carlos Maldonado",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "maldonado_bolardos_gnc",
+            "nombre": "Bolardos para Estación de Servicio GNC",
+            "fecha": "2025-07",
+            "descripcion": "Cálculo y planos para ejecución de bolardos de protección en estación de servicio GNC.",
+            "tags": [
+              "hormigón armado",
+              "protección vehicular",
+              "estación de servicio",
+              "GNC"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_picco",
+        "cliente": "Arq. Luisina Picco",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "picco_cubierta_salon",
+            "nombre": "Verificación de Cubierta Metálica — Salón de Fiestas",
+            "fecha": "2023-08",
+            "descripcion": "Verificación de cubierta metálica existente para habilitación de salón de fiestas.",
+            "tags": [
+              "estructura metálica",
+              "cubierta",
+              "verificación",
+              "habilitación"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_renovales",
+        "cliente": "Los Renovales SA",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "renovales_canal_lapaz",
+            "nombre": "Canal de Contención de Lluvias — Campo La Paz, Entre Ríos",
+            "fecha": "2021-11",
+            "descripcion": "Cálculo hidrológico-hidráulico de canal con escurrimiento Sur-Norte y canal Este-Oeste, con caminos rurales internos. Diseño de canal secundario paralelo como aliviador conectado por alcantarilla para evacuación de caudales de diseño.",
+            "tags": [
+              "hidrología",
+              "hidráulica",
+              "canales",
+              "escurrimiento",
+              "obra rural",
+              "Entre Ríos",
+              "alcantarilla"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_fonseca",
+        "cliente": "Gustavo Fonseca",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ],
+        "proyectos": [
+          {
+            "id": "fonseca_cargill_silo",
+            "nombre": "Superestructura Metálica y Fundaciones — Silo Cargill Los Cisnes",
+            "fecha": "2025-11",
+            "descripcion": "Cálculo de superestructura metálica para silo y diseño de fundaciones.",
+            "tags": [
+              "estructura metálica",
+              "silo",
+              "fundaciones",
+              "Cargill",
+              "agroindustria"
+            ],
+            "imagenes": []
+          }
+        ]
+      },
+      {
+        "id": "freelance_anonimo",
+        "cliente": "Cliente no identificado",
+        "_nota": "Recordar quién era para completar este campo",
+        "tipo_relacion": "independiente",
+        "incluir_en": [
+          "estructural"
+        ],
+        "proyectos": [
+          {
+            "id": "anonimo_cubierta_viguetas",
+            "nombre": "Informe de Estado de Obra — Cubierta de Viguetas",
+            "fecha": null,
+            "_aprox": true,
+            "descripcion": "Control de terminación de obra de cubierta de viguetas. Informe de situación actual.",
+            "tags": [
+              "cubierta",
+              "viguetas",
+              "informe técnico",
+              "supervisión"
+            ],
+            "imagenes": []
+          }
+        ]
+      }
+    ]
+  },
+  "proyectos_propios": {
+    "_nota": "Proyectos personales o de emprendimiento con alto valor diferencial. Pueden aparecer como sección propia o embebidos en experiencia según el perfil.",
+    "items": [
+      {
+        "id": "wash_motion",
+        "nombre": "Wash Motion — Plataforma de Gestión para Red de Lavaderos",
+        "rol": "Diseño, desarrollo e implementación integral",
+        "descripcion": "Plataforma operativa completa para una red de lavaderos móviles con modelo de franquicia. Arquitectura distribuida en 3 proyectos de Apps Script independientes, base de datos relacional de 12+ tablas en Google Sheets, y portales web diferenciados por rol.",
+        "stack": [
+          "Google Apps Script (Web Apps + Webhooks + Triggers)",
+          "Google Sheets (12+ tablas relacionales)",
+          "Google Calendar API",
+          "Google Drive API",
+          "Google Forms",
+          "AppSheet",
+          "Looker Studio",
+          "HTML/CSS",
+          "GitHub Pages"
+        ],
+        "logros": [
+          "Sistema de reservas en tiempo real con detección automática de conflictos de horario, oferta de slots alternativos y expiración tokenizada a 15 minutos.",
+          "Integración con Google Calendar (creación/cancelación automática de eventos) y Google Forms (cancelaciones y valoraciones post-servicio).",
+          "App móvil para operadores en AppSheet: check-in, registro de servicios, carga de comprobantes de pago.",
+          "Dashboards analíticos en Looker Studio: ocupación por franja horaria, rendimiento por operador, tasas de no-show, ingresos por sucursal y método de pago.",
+          "Módulo financiero: rendiciones automáticas con generación de PDFs en Google Drive, cálculo de comisiones por operador, emails diferenciados (admin diario + operador según frecuencia de pago).",
+          "Proxy de URLs sensibles en Apps Script para ocultar endpoints de AppSheet y Looker del HTML público. Portales en GitHub Pages (admin, operador, cliente).",
+          "Emails transaccionales HTML: confirmación con botón 'Guardar en calendario', email VIP con ficha del operador (foto, rating, mapa), notificación de conflictos, y post-servicio con link de valoración."
+        ],
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ],
+        "destacado": true,
+        "imagenes": []
+      },
+      {
+        "id": "software_ingenieria_excel",
+        "nombre": "Suite de Herramientas de Ingeniería Interna — Excel Consulting",
+        "rol": "Diseño y desarrollo",
+        "_nota": "Completar con nombres o funcionalidades específicas de cada herramienta cuando los recuerdes",
+        "descripcion": "Conjunto de herramientas desarrolladas en Python y Excel VBA para agilizar el trabajo de cálculo estructural en oficina técnica. Incluye base de datos dinámica de equipos industriales, aplicaciones web de cálculo y automatizaciones.",
+        "stack": [
+          "Python",
+          "Excel VBA",
+          "HTML/CSS"
+        ],
+        "logros": [
+          "Base de datos dinámica de equipos industriales para consulta en oficina técnica.",
+          "Aplicaciones web de cálculo estructural para uso interno y de otros ingenieros.",
+          "Automatizaciones de procesos repetitivos: reducción de tareas de 8 horas a segundos."
+        ],
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ],
+        "destacado": false,
+        "imagenes": []
+      }
+    ]
+  },
+  "proyectos_destacados_por_escala": {
+    "_nota": "Selección curada de proyectos de alto impacto para secciones 'Proyectos Relevantes' en CVs o en el portfolio. Los 'ref_id' apuntan a IDs definidos en otras secciones — no se duplica data, solo se referencia.",
+    "items": [
+      {
+        "ref_id": "galassi_kcc",
+        "seccion_origen": "freelance_independiente",
+        "motivo_destaque": "Rehabilitación post-siniestro integral desde día 0. Múltiples disciplinas: relevamiento, refuerzos, cubierta, fundaciones, supervisión completa.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      },
+      {
+        "ref_id": "av_sistema_gestion_presupuestos",
+        "seccion_origen": "freelance_independiente",
+        "motivo_destaque": "Sistema de gestión comercial y operativa completo, desarrollado como producto web real para cliente externo. Supera a Wash Motion en madurez técnica por uso de Firebase, modelo de datos más robusto, documentación viva, reglas de seguridad, generación documental versionada y trazabilidad de procesos.",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "ref_id": "wash_motion",
+        "seccion_origen": "proyectos_propios",
+        "motivo_destaque": "Sistema de software completo end-to-end sobre ecosistema 100% gratuito. Demuestra capacidad de producto completo en el perfil de sistemas.",
+        "incluir_en": [
+          "sistemas",
+          "todoterreno"
+        ]
+      },
+      {
+        "ref_id": "deprop",
+        "seccion_origen": "experiencia_laboral",
+        "motivo_destaque": "BNA Firmat: recalce + ampliación en edificio institucional en servicio. Alta complejidad geotécnica y constructiva.",
+        "incluir_en": [
+          "estructural",
+          "todoterreno"
+        ]
+      }
+    ]
+  }
+}
