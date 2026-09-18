@@ -1,0 +1,86 @@
+{
+  "Nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "Hero": {
+    "eyebrow": "Structural & Systems Engineer",
+    "headline": "Industrial-scale structural calculation. Custom systems to run it.",
+    "subheadline": "Basic and detail engineering, 3D modeling and fabrication documentation for large-scale industrial projects — combined with custom software and automation to move the technical office faster.",
+    "ctaPrimary": "View projects",
+    "ctaSecondary": "Get in touch",
+    "scrollHint": "Scroll to see more"
+  },
+  "About": {
+    "label": "About me",
+    "title": "A hybrid profile: structural calculation and custom systems",
+    "factsLocation": "Location",
+    "factsExperience": "Experience",
+    "factsLanguages": "Languages",
+    "factsTeaching": "Teaching",
+    "downloadCv": "Download updated resume",
+    "downloadCvHint": "PDF generated automatically from this same site"
+  },
+  "Stats": {
+    "label": "By the numbers",
+    "yearsExperience": "Years of experience",
+    "steelTons": "Tons of steel calculated",
+    "concreteM3": "m³ of concrete calculated",
+    "industrialClients": "Industrial clients",
+    "ownProjects": "Own projects"
+  },
+  "Experience": {
+    "label": "Track record",
+    "title": "Work experience",
+    "present": "Present"
+  },
+  "Projects": {
+    "label": "Projects",
+    "title": "Featured projects",
+    "subtitle": "In parallel: industrial-scale structural calculation and custom management and automation systems.",
+    "trackStructural": "Structural",
+    "trackSystems": "Systems & AI",
+    "imagePending": "Image coming soon",
+    "watchVideo": "Watch the erection video",
+    "stack": "Tools",
+    "client": "Client"
+  },
+  "Skills": {
+    "label": "Skills",
+    "title": "Tools and technologies",
+    "categoryStructural": "Structural calculation and design",
+    "categorySystems": "Systems, data and automation"
+  },
+  "Education": {
+    "label": "Education",
+    "title": "Education and teaching"
+  },
+  "Contact": {
+    "label": "Contact",
+    "title": "Let's work together",
+    "subtitle": "Available for structural calculation projects, technical consulting and custom system development.",
+    "emailCta": "Send an email",
+    "whatsappCta": "Message on WhatsApp",
+    "linkedinCta": "View LinkedIn"
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
+  },
+  "Theme": {
+    "light": "Light theme",
+    "dark": "Dark theme",
+    "toggle": "Toggle theme"
+  },
+  "Locale": {
+    "es": "Español",
+    "en": "English",
+    "switch": "Switch language"
+  }
+}

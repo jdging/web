@@ -1,0 +1,86 @@
+{
+  "Nav": {
+    "about": "Sobre mí",
+    "experience": "Trayectoria",
+    "projects": "Proyectos",
+    "skills": "Competencias",
+    "education": "Formación",
+    "contact": "Contacto",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú"
+  },
+  "Hero": {
+    "eyebrow": "Ingeniero en Estructuras & Sistemas",
+    "headline": "Cálculo estructural de escala industrial. Sistemas propios para operarlo.",
+    "subheadline": "Ingeniería básica, de detalle, modelado 3D y fabricación para proyectos industriales de gran escala — combinado con software y automatización propia para llevar la oficina técnica más rápido.",
+    "ctaPrimary": "Ver proyectos",
+    "ctaSecondary": "Contactar",
+    "scrollHint": "Desplazate para ver más"
+  },
+  "About": {
+    "label": "Sobre mí",
+    "title": "Un perfil híbrido: cálculo estructural y sistemas propios",
+    "factsLocation": "Ubicación",
+    "factsExperience": "Experiencia",
+    "factsLanguages": "Idiomas",
+    "factsTeaching": "Docencia",
+    "downloadCv": "Descargar CV actualizado",
+    "downloadCvHint": "PDF generado automáticamente a partir de este mismo sitio"
+  },
+  "Stats": {
+    "label": "En números",
+    "yearsExperience": "Años de experiencia",
+    "steelTons": "Toneladas de acero calculadas",
+    "concreteM3": "m³ de hormigón calculados",
+    "industrialClients": "Clientes industriales",
+    "ownProjects": "Proyectos propios"
+  },
+  "Experience": {
+    "label": "Trayectoria",
+    "title": "Experiencia laboral",
+    "present": "Actualidad"
+  },
+  "Projects": {
+    "label": "Proyectos",
+    "title": "Proyectos destacados",
+    "subtitle": "En paralelo: cálculo estructural de escala industrial y sistemas propios de gestión y automatización.",
+    "trackStructural": "Estructural",
+    "trackSystems": "Sistemas & IA",
+    "imagePending": "Imagen próximamente",
+    "watchVideo": "Ver video del montaje",
+    "stack": "Herramientas",
+    "client": "Cliente"
+  },
+  "Skills": {
+    "label": "Competencias",
+    "title": "Herramientas y tecnologías",
+    "categoryStructural": "Cálculo y diseño estructural",
+    "categorySystems": "Sistemas, datos y automatización"
+  },
+  "Education": {
+    "label": "Formación",
+    "title": "Educación y docencia"
+  },
+  "Contact": {
+    "label": "Contacto",
+    "title": "Trabajemos juntos",
+    "subtitle": "Disponible para proyectos de cálculo estructural, consultoría técnica y desarrollo de sistemas a medida.",
+    "emailCta": "Escribir un email",
+    "whatsappCta": "Escribir por WhatsApp",
+    "linkedinCta": "Ver LinkedIn"
+  },
+  "Footer": {
+    "rights": "Todos los derechos reservados.",
+    "backToTop": "Volver arriba"
+  },
+  "Theme": {
+    "light": "Tema claro",
+    "dark": "Tema oscuro",
+    "toggle": "Cambiar tema"
+  },
+  "Locale": {
+    "es": "Español",
+    "en": "English",
+    "switch": "Cambiar idioma"
+  }
+}

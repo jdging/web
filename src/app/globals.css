@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+ * Sistema de color derivado del Manual de Marca de JDG:
+ * paleta estricta navy (#2b3263 / #1e2348) + blanco.
+ * El modo oscuro usa la versión "negativo" ya aprobada en el manual
+ * (isologo y texto en blanco sobre navy), no un tema inventado.
+ */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f4f5f8;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f4f5f8;
+  --color-border: #e2e4ed;
+  --color-border-strong: #c9cce0;
+  --color-text: #1a1d2e;
+  --color-text-secondary: #565c7e;
+  --color-text-muted: #8990b3;
+  --color-brand: #2b3263;
+  --color-brand-deep: #1e2348;
+  --color-brand-contrast: #ffffff;
+  --color-ring: #2b3263;
+  /* Navy fijo del manual: no se invierte con el tema (usado en footer y
+     superficies que deben mantenerse siempre en la versión "negativo"). */
+  --color-ink: #1e2348;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #181c38;
+  --color-bg-subtle: #212650;
+  --color-surface: #212650;
+  --color-surface-hover: #282e5c;
+  --color-border: rgb(255 255 255 / 12%);
+  --color-border-strong: rgb(255 255 255 / 22%);
+  --color-text: #f3f4f9;
+  --color-text-secondary: #b9bede;
+  --color-text-muted: #8790bd;
+  --color-brand: #ffffff;
+  --color-brand-deep: #ffffff;
+  --color-brand-contrast: #1e2348;
+  --color-ring: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-bg-subtle: var(--color-bg-subtle);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+  --color-text: var(--color-text);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-brand: var(--color-brand);
+  --color-brand-deep: var(--color-brand-deep);
+  --color-brand-contrast: var(--color-brand-contrast);
+  --color-ring: var(--color-ring);
+  --color-ink: var(--color-ink);
+
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-lato);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-brand-contrast);
+}
+
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Motivo geométrico recurrente: corte diagonal facetado del isologo,
+   usado como separador de sección en vez de una línea recta genérica. */
+.facet-divider {
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+}
+
+.facet-divider-reverse {
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
+}
